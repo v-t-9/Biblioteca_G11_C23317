@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 from usuarios.models import Usuario
 from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.db.models import Q
 # Create your views here.
 
 def index(request):
@@ -21,6 +21,14 @@ def index(request):
 def catalogo(request, año=0):
 
    libro = Libro.objects.all().order_by("-id")
+
+   if request.method == 'POST':
+      buscar = request.POST.get('buscar')
+      print(buscar)
+      if buscar:
+         res = Libro.objects.filter(titulo__contains=buscar)
+         return render(request, 'sistema_biblioteca/catalogo.html', {'res': res})
+   
    context = {
       'libro': libro,
       'año_ingreso': año,
