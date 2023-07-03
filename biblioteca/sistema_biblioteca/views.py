@@ -24,7 +24,6 @@ def catalogo(request, año=0):
 
    if request.method == 'POST':
       buscar = request.POST.get('buscar')
-      print(buscar)
       if buscar:
          res = Libro.objects.filter(titulo__contains=buscar)
          return render(request, 'sistema_biblioteca/catalogo.html', {'res': res})
@@ -80,7 +79,7 @@ class LibrosPrestadosPorUsuario(LoginRequiredMixin, ListView):
 
 #logeo para poder dar de alta libro
 @login_required(login_url="/usuarios/login_user")
-def biblioteca(request, año = 2022):
+def biblioteca(request):
    l = Libro.objects.all()
    if request.method == "POST":
       form = AltaLibro(request.POST, request.FILES)
