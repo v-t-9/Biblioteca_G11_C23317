@@ -21,7 +21,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
+            <div class="container-fluid" style="padding-right: 0px;">
                 <img src="{% static 'sistema_biblioteca/img/logo_biblioteca.png' %}" alt=logo width="50px" >
                 <a class="navbar-brand" href="{% url 'index' %}">Biblioteca Virtual</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -88,10 +88,21 @@
                     </ul>
                 </div>
             </div>
+            <div class="container-fluid" >
+            <div class="float-left">
+                <div class="row my-3 ms-5">
+                    <div class="col-md-12 ms-5">
+                        <form class="d-inline-flex ms-5" role="buscar" method="POST" action="{% url 'catalogo' %}">
+                            {% csrf_token %}
+                            <input class="form-control ms-5" type="buscar" placeholder="Buscar por título o autor" name="buscar"
+                                aria-label="Search">
+                            <button class="btn btn-secondary ms-1" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
         </nav>
-
-        
-
     </header>
     <main>
         <div class="container">

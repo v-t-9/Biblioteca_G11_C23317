@@ -37,18 +37,7 @@
             {% endif %}
         
         </div>
-        <div class="container-fluid">
-            <div class="row my-4">
-                <div class="col-md-12 ">
-                    <form class="d-inline-flex" role="buscar" method="POST" action="{% url 'catalogo' %}">
-                        {% csrf_token %}
-                        <input class="form-control me-1 ms-4" type="buscar" placeholder="Buscar por título" name="buscar"
-                            aria-label="Search">
-                        <button class="btn btn-light" type="submit">Buscar</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+  
 
     {% for r in res %}
         <article style="margin-left: 20px;">

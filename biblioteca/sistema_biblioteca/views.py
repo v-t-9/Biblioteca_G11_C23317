@@ -25,7 +25,8 @@ def catalogo(request, año=0):
    if request.method == 'POST':
       buscar = request.POST.get('buscar')
       if buscar:
-         res = Libro.objects.filter(titulo__contains=buscar)
+         res = Libro.objects.filter(Q(titulo__icontains=buscar)|Q(autor__apellido__icontains=buscar)|Q(autor__nombre__icontains=buscar))
+       
          return render(request, 'sistema_biblioteca/catalogo.html', {'res': res})
    
    context = {
